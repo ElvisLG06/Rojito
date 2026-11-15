@@ -27,7 +27,7 @@ jobs:
             exit 0
           fi
           curl -sS --fail -X POST "$URL/rest/v1/rpc/ping" \
-            -H "apikey: $KEY" -H "Authorization: Bearer $KEY" \
+            -H "apikey: $KEY" \
             -H "Content-Type: application/json" -d '{}'
           echo
           echo "Supabase respondió."
