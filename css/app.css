@@ -41,9 +41,7 @@ img { display: block; }
   position: relative;
 }
 
-.cargando { min-height: 80dvh; display: flex; align-items: center; justify-content: center; }
-.cargando img { border-radius: 18px; animation: latido 1.2s ease-in-out infinite; }
-@keyframes latido { 50% { transform: scale(0.94); opacity: 0.7; } }
+/* La pantalla de carga está en index.html (se pinta antes que este archivo). */
 
 .oculto-visual { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 

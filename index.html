@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" style="background:#F4F1EE">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#F4F1EE">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -10,17 +11,40 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="robots" content="noindex, nofollow">
   <title>Rojito</title>
+  <!-- Pantalla de carga: va aquí dentro para que se pinte al instante, antes que todo lo demás -->
+  <style>
+    html, body { margin: 0; background: #F4F1EE; }
+    .cargando { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #F4F1EE; z-index: 100; }
+    .cargando img { width: 120px; height: 120px; border-radius: 28px; animation: latido 1.2s ease-in-out infinite; }
+    @keyframes latido { 50% { transform: scale(0.94); opacity: 0.75; } }
+  </style>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="img/favicon-64.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1320x2868.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1290x2796.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 420px) and (device-height: 912px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1260x2736.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1206x2622.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1179x2556.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1170x2532.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1284x2778.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1242x2688.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1125x2436.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="img/splash/splash-828x1792.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="img/splash/splash-1242x2208.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="img/splash/splash-750x1334.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="img/splash/splash-640x1136.png">
+  <link rel="preload" as="image" href="img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="modulepreload" href="js/app.js">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
   <main id="app" aria-live="polite">
-    <div class="cargando"><img src="img/logo.svg" alt="" width="72" height="72"></div>
+    <div class="cargando" aria-label="Cargando"><img src="img/logo.svg" alt="" width="120" height="120"></div>
   </main>
   <div id="toast" class="toast" role="status" hidden></div>
   <script type="module" src="js/app.js"></script>
