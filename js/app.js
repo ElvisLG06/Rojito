@@ -807,7 +807,15 @@ async function recargarYRepintar() {
 }
 
 async function iniciar() {
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator) {
+    // Si llega una versión nueva de la app, recargar una vez para usarla.
+    const habiaVersion = !!navigator.serviceWorker.controller;
+    let recargada = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (habiaVersion && !recargada) { recargada = true; location.reload(); }
+    });
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then((r) => r.update()).catch(() => {});
+  }
 
   if (MODO_DEMO) {
     estado.almacen = new AlmacenDemo();
