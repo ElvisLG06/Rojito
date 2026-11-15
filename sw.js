@@ -1,6 +1,6 @@
 // Service worker sencillo: siempre intenta traer la versión más nueva de la app
 // y, si no hay internet, muestra la última guardada.
-const CACHE = 'rojito-v1';
+const CACHE = 'rojito-v2';
 const BASE = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/config.js', 'js/datos.js',
   'img/logo.svg', 'img/icon-192.png', 'manifest.webmanifest'

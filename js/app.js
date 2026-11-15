@@ -61,7 +61,7 @@ const TIPOS = {
   },
 };
 
-const NOMBRES_BASE = ['Elvis', 'Hermano', 'Mamá'];
+const NOMBRES = ['Maribel', 'Elvis', 'Gabriela', 'Diogo'];
 
 // ===========================================================================
 // Íconos (trazo, sin emoji)
@@ -603,8 +603,8 @@ async function vistaDetalle({ id }) {
 }
 
 function vistaBienvenida() {
-  const nombres = [...new Set([...NOMBRES_BASE, ...estado.registros.map((r) => r.autor).filter(Boolean), estado.usuario].filter(Boolean))];
-  let elegido = estado.usuario;
+  const nombres = NOMBRES;
+  let elegido = NOMBRES.includes(estado.usuario) ? estado.usuario : '';
 
   $app.innerHTML = `
     <div class="bienvenida">
@@ -618,11 +618,6 @@ function vistaBienvenida() {
         <span class="ayuda" style="font-size:13px">Solo se pregunta una vez en este celular</span>
         <div class="nombres" id="nombres">
           ${nombres.map((n) => `<button type="button" class="nombre${n === elegido ? ' activo' : ''}" data-nombre="${esc(n)}">${esc(n)}</button>`).join('')}
-          <button type="button" class="nombre otro" id="otro-nombre">+ Otro nombre</button>
-        </div>
-        <div class="campo" id="caja-otro" hidden>
-          <label for="in-otro">Tu nombre</label>
-          <input id="in-otro" type="text" maxlength="24" autocomplete="given-name" placeholder="Ej: Papá">
         </div>
       </div>
       <div class="crece"></div>
@@ -630,22 +625,12 @@ function vistaBienvenida() {
     </div>
   `;
   const btn = document.getElementById('entrar');
-  const inOtro = document.getElementById('in-otro');
   const marcar = (n) => {
     elegido = n;
     $app.querySelectorAll('[data-nombre]').forEach((b) => b.classList.toggle('activo', b.dataset.nombre === n));
     btn.disabled = !elegido;
   };
-  $app.querySelectorAll('[data-nombre]').forEach((b) => b.addEventListener('click', () => {
-    document.getElementById('caja-otro').hidden = true;
-    marcar(b.dataset.nombre);
-  }));
-  document.getElementById('otro-nombre').addEventListener('click', () => {
-    document.getElementById('caja-otro').hidden = false;
-    marcar(inOtro.value.trim());
-    inOtro.focus();
-  });
-  inOtro.addEventListener('input', () => marcar(inOtro.value.trim()));
+  $app.querySelectorAll('[data-nombre]').forEach((b) => b.addEventListener('click', () => marcar(b.dataset.nombre)));
   btn.addEventListener('click', () => {
     if (!elegido) return;
     estado.usuario = elegido.slice(0, 24);
